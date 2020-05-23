@@ -3,6 +3,7 @@ package englishly;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,13 +27,14 @@ public class DatabaseManager {
 	private Question parseQuestionByType(JSONObject questionJSONObject) throws UnknowQuestionTypeException{
 		Question question;
 		
-		String questionType = (String) questionJSONObject.get("type");
+		String stringQuestionType = (String) questionJSONObject.get("type");
+		QuestionType questionType = QuestionType.valueOf(stringQuestionType);
 		String difficulty = (String) questionJSONObject.get("difficulty");
 		int id = ((Long) questionJSONObject.get("id")).intValue();
 		String content = (String) questionJSONObject.get("content");
 		
 		switch(questionType) {
-			case "AMERICAN":
+			case AMERICAN:
 				int americanRightAnswer = ((Long) questionJSONObject.get("rightAnswer")).intValue();
 				JSONArray answersObjects = (JSONArray)questionJSONObject.get("answers");
 				ArrayList<String> answers = new ArrayList<String>();
@@ -42,11 +44,11 @@ public class DatabaseManager {
 			    }
 			    question = new AmericanQuestion(id, americanRightAnswer, answers, Difficulty.valueOf(difficulty), content);
 			    break;
-			case "BINARY":
+			case BINARY:
 				int binaryRightAnswer = ((Long) questionJSONObject.get("rightAnswer")).intValue();
 				question = new BinaryQuestion(id, binaryRightAnswer, Difficulty.valueOf(difficulty), content);
 				break;
-			case "COMPLETION":
+			case COMPLETION:
 				String completionRightAnswer = (String) questionJSONObject.get("rightAnswer");
 				question = new CompletionQuestion(id, completionRightAnswer, Difficulty.valueOf(difficulty), content);
 				break;
@@ -88,11 +90,29 @@ public class DatabaseManager {
 			
 			this.questions.add(question);
 		}
-		System.out.println(this.questions.size());
+		System.out.println("Loaded questions: " + String.valueOf(this.questions.size()) + " questions.");
 	}
 
-	public void getQuestion() {
-
+	public Question getQuestionByID(int id) throws QuestionNotFoundException {
+		for (Question question: this.questions) {
+			if (question.id == id) {
+				return question;
+			}
+		}
+		
+		throw new QuestionNotFoundException("Question not found");
+	}
+	
+	public ArrayList<Question> getShuffledQuestions(Difficulty difficulty, int length) {
+		ArrayList<Question> filteredQuestions = new ArrayList<Question>();
+		for (Question question: this.questions) {
+			if (question.difficulty == difficulty) {
+				filteredQuestions.add(question);
+			}
+		}
+		Collections.shuffle(filteredQuestions);
+		
+		return new ArrayList<Question>(filteredQuestions.subList(0, length - 1));
 	}
 
 	public void saveQuestion() {
