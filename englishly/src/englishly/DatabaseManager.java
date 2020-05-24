@@ -15,7 +15,7 @@ import englishly.Question.Difficulty;
 
 public class DatabaseManager {
 	private String path;
-	ArrayList<Question> questions;
+	private ArrayList<Question> questions;
 
 	public DatabaseManager(String path) {
 		this.path = path;
