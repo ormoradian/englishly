@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
     	
-		DatabaseManager db = new DatabaseManager("c:\\Users\\pruss\\Desktop");
+		DatabaseManager db = DatabaseManager.getInstance();
 		Menu menu = new Menu();
 		
 		menu.showMenu();

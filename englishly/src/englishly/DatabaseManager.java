@@ -16,12 +16,23 @@ import englishly.Question.Difficulty;
 public class DatabaseManager {
 	private String path;
 	private ArrayList<Question> questions;
+	
+	private static DatabaseManager single_instance = null;
+	
+    public static DatabaseManager getInstance() 
+    { 
+        if (single_instance == null) 
+            single_instance = new DatabaseManager(); 
+ 
+        return single_instance; 
+    } 
 
-	public DatabaseManager(String path) {
-		this.path = path;
+	public DatabaseManager() {
+		this.path = System.getenv("ENGLISHLY_DB_PATH");
 		this.questions = new ArrayList<Question>();
 
 		this.loadQuestions();
+		this.loadQuizs();
 	}
 	
 	private Question parseQuestionByType(JSONObject questionJSONObject) throws UnknowQuestionTypeException{
@@ -57,6 +68,10 @@ public class DatabaseManager {
 		}
 
 		return question;
+	}
+	
+	private void loadQuizs() {
+		
 	}
 
 	private void loadQuestions() {

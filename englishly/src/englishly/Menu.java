@@ -36,7 +36,7 @@ public class Menu {
 		
 		System.out.println("Select an option from the menu: ");
 		
-		while (numericOption < 0) {
+		while (numericOption <= 0) {
 			String selectedOption = scanner.nextLine();
 			try { 
 				numericOption = Integer.parseInt(selectedOption);
