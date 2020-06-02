@@ -28,6 +28,7 @@ public class DatabaseManager {
     } 
 
 	public DatabaseManager() {
+		// Don't call me directly!! Call getInstance method instead
 		this.path = System.getenv("ENGLISHLY_DB_PATH");
 		this.questions = new ArrayList<Question>();
 
