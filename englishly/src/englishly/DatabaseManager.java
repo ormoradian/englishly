@@ -121,7 +121,7 @@ public class DatabaseManager {
 	
 	public ArrayList<Integer> getQuestionsByDifficulty(Difficulty difficulty) {
 		ArrayList<Integer> questionIds = new ArrayList<Integer>();
-		
+		// TODO implement this
 		return questionIds;
 	}
 	
@@ -142,7 +142,7 @@ public class DatabaseManager {
 	}
 	
 	public int produceQuizId() {
-		// implement to get the max quiz id + 1
+		// TODO implement to get the max quiz id + 1
 		return 1;
 	}
 
