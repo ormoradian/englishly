@@ -13,12 +13,21 @@ public class Quiz {
 	private Long startTime;
 	private Long endTime;
 	protected Long complitionSeconds;
-	protected ArrayList<String> questionIds;
+	protected ArrayList<Integer> questionIds;
+	private DatabaseManager databaseManager;
+	
+	public Quiz(Difficulty difficulty, int numberOfQuestions) {
+		this.difficulty = difficulty;
+		this.databaseManager = DatabaseManager.getInstance();
+		this.id = this.databaseManager.produceQuizId();
+		this.numberOfQuestions = numberOfQuestions;
+		this.questionIds = this.databaseManager.getQuestionsByDifficulty(difficulty);
+	}
 	
 	public Difficulty getDifficulty() {
 		return this.difficulty;
 	}
-	
+
 	public void finalizeQuiz() {
 		this.endTime = Instant.now().getEpochSecond();
 		this.complitionSeconds = this.endTime - this.startTime;

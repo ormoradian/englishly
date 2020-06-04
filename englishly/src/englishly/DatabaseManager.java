@@ -119,6 +119,12 @@ public class DatabaseManager {
 		throw new QuestionNotFoundException("Question not found");
 	}
 	
+	public ArrayList<Integer> getQuestionsByDifficulty(Difficulty difficulty) {
+		ArrayList<Integer> questionIds = new ArrayList<Integer>();
+		
+		return questionIds;
+	}
+	
 	public ArrayList<Question> getShuffledQuestions(Difficulty difficulty, int length) {
 		ArrayList<Question> filteredQuestions = new ArrayList<Question>();
 		for (Question question: this.questions) {
@@ -133,6 +139,11 @@ public class DatabaseManager {
 
 	public void saveQuestion() {
 
+	}
+	
+	public int produceQuizId() {
+		// implement to get the max quiz id + 1
+		return 1;
 	}
 
 	public void getQuiz() {
