@@ -1,0 +1,134 @@
+[
+	{
+	    "difficulty": "LOW",
+	    "id": 0,
+	    "content": "This is my aunt, Pam; {} my mother's sister.",
+	    "rightAnswer": "she's",
+	    "type": "COMPLETION"
+  	},
+
+  	{
+	    "difficulty": "LOW",
+	    "id": 1,
+	    "content": "{} are you having dinner with?\nI'm having dinner with Junko.",
+	    "rightAnswer": "Who",
+	    "type": "COMPLETION"
+  	},
+  	{
+	    "difficulty": "HIGH",
+	    "id": 2,
+	    "content": "This is my aunt, Pam; {} my mother's sister.",
+	    "rightAnswer": "she's",
+	    "type": "COMPLETION"
+  	},
+  	{
+	    "difficulty": "LOW",
+	    "id": 3,
+	    "content": "Where {} the Battle of the Bulge?",
+	    "rightAnswer": "was",
+	    "type": "COMPLETION"
+  	},
+    {
+	    "answers": [
+	      "Plough",
+	      "Plow"
+	    ],
+	    "difficulty": "HIGH",
+	    "id": 4,
+	    "content": "Which word is spelled in British English?",
+	    "rightAnswer": 0,
+	    "type": "AMERICAN"
+    },
+    {
+	    "answers": [
+	      "Draft",
+	      "Draught"
+	    ],
+	    "difficulty": "HIGH",
+	    "id": 5,
+	    "content": "Which word is spelled in American English?",
+	    "rightAnswer": 1,
+	    "type": "AMERICAN"
+    },
+    {
+	    "answers": [
+	      "Draft",
+	      "Draught"
+	    ],
+	    "difficulty": "HIGH",
+	    "id": 6,
+	    "content": "Which word is spelled in American English?",
+	    "rightAnswer": 1,
+	    "type": "AMERICAN"
+    },
+ 	{
+	    "id": 7,
+	    "difficulty": "MEDIUM",
+	    "content": "A RIVER is bigger than a STREAM.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 8,
+	    "difficulty": "MEDIUM",
+	    "content": "There are one thousand years in a CENTURY.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 9,
+	    "difficulty": "MEDIUM",
+	    "content": "FOUNDED is the past tense of FOUND.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 10,
+	    "difficulty": "MEDIUM",
+	    "content": "ANSWER can be used as a noun and a verb.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 11,
+	    "difficulty": "MEDIUM",
+	    "content": "SCARLET is a brilliant red colour.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 12,
+	    "difficulty": "MEDIUM",
+	    "content": "USED TO DOING and USED TO DO mean the same thing.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 13,
+	    "difficulty": "MEDIUM",
+	    "content": "You can use IMPROVE as a noun and as a verb.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 14,
+	    "difficulty": "MEDIUM",
+	    "content": "DOZEN is equivalent to 20.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 15,
+	    "difficulty": "MEDIUM",
+	    "content": "The past tense of FIND is FOUND.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+	{
+	    "id": 16,
+	    "difficulty": "MEDIUM",
+	    "content": "EQUIVALENT TO is (more or less) the same as EQUAL TO.",
+	    "rightAnswer": 1,
+	    "type": "BINARY"
+	}
+]
