@@ -1,18 +1,23 @@
 package englishly;
 
 import java.util.Scanner;
+
+import englishly.Question.Difficulty;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class Menu {
 	private Map<Integer, String> options;
+	private Scanner scanner;
 	
 	public Menu() {
 		this.options = new HashMap<Integer, String>() {{
 		    put(1, "Start a quiz");
 	        put(2, "Exit");
 		}};
+		this.scanner =  new Scanner(System.in);
 	}
 	
 	public void showMenu() {
@@ -29,15 +34,31 @@ public class Menu {
 		System.out.format("+----+----------------+%n");
 	}
 	
+	public Difficulty getDifficulty() {
+		System.out.println("Please choose the level of the quiz");
+		String leftAlignFormat = "| %-3d| %-14s |%n";
+		System.out.format("+----+----------------+%n");
+		System.out.format("| ID |     Option     |%n");
+		System.out.format("+----+----------------+%n");
+		int i = 0;
+		for (Difficulty difficulty : Difficulty.values()) {
+			System.out.format(leftAlignFormat, i, difficulty);
+			i++;
+		}
+		System.out.format("+----+----------------+%n");
+        int selection = this.scanner.nextInt();
+        return Difficulty.values()[selection];   
+	
+	}
+	
 	public int getAction() {
-		Scanner scanner = new Scanner(System.in);
 		int numericOption = -1;
 		boolean isError = false;
 		
 		System.out.println("Select an option from the menu: ");
 		
 		while (numericOption <= 0) {
-			String selectedOption = scanner.nextLine();
+			String selectedOption = this.scanner.nextLine();
 			try { 
 				numericOption = Integer.parseInt(selectedOption);
 			} catch(NumberFormatException e){  

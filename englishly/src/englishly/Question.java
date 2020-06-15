@@ -9,7 +9,7 @@ enum QuestionType {
 }
 
 abstract public class Question {
-	enum Difficulty {
+	public enum Difficulty {
 	    LOW,
 	    MEDIUM,
 	    HIGH
@@ -21,4 +21,5 @@ abstract public class Question {
 	protected String content;
 
 	public abstract void printQuestion();
+	public abstract boolean isRightAnswer();
 }

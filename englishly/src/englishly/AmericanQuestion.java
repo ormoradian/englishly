@@ -1,6 +1,7 @@
 package englishly;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class AmericanQuestion extends ChoiceQuestion {
 	public AmericanQuestion(int id, 
@@ -26,7 +27,9 @@ class AmericanQuestion extends ChoiceQuestion {
 		}
 	}
 	
-	public boolean isRightAnswer(int answer) {
+	public boolean isRightAnswer() {
+		Scanner scanner = new Scanner(System.in);
+		int answer = scanner.nextInt();
 		return answer - 1 == this.rightAnswer; 
 	}
 }

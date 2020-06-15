@@ -2,8 +2,12 @@ package englishly;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
+import java.util.Random;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,6 +20,7 @@ import englishly.Question.Difficulty;
 public class DatabaseManager {
 	private String path;
 	private ArrayList<Question> questions;
+	private JSONArray quizResults;
 	
 	private static DatabaseManager single_instance = null;
 	
@@ -72,7 +77,22 @@ public class DatabaseManager {
 	}
 	
 	private void loadQuizs() {
+		FileReader quizFile;
+		try {
+			quizFile = new FileReader(this.path + "\\quiz.json");
+		} catch (FileNotFoundException e) {
+			System.out.println("Database not found...");
+			return;
+		}
 		
+		JSONParser parser = new JSONParser();
+		try {
+			this.quizResults = (JSONArray) parser.parse(quizFile);
+		} catch (Exception e) {
+			this.quizResults = new JSONArray();
+		}
+		
+		System.out.println("Loaded quizes: " + String.valueOf(this.quizResults.size()) + " quizes.");
 	}
 
 	private void loadQuestions() {
@@ -90,7 +110,7 @@ public class DatabaseManager {
 		try {
 			questionsArray = (JSONArray) parser.parse(questionsFile);
 		} catch (Exception e) {
-			System.out.println("Failed to paese the JSON database...");
+			System.out.println("Failed to parse the JSON database...");
 			return;
 		}
 
@@ -119,10 +139,26 @@ public class DatabaseManager {
 		throw new QuestionNotFoundException("Question not found");
 	}
 	
-	public ArrayList<Integer> getQuestionsByDifficulty(Difficulty difficulty) {
+	public ArrayList<Integer> getQuestionsByDifficulty(Difficulty difficulty, int numberOfQuestions) {
+		ArrayList<Question> relevantQuestions = new ArrayList<Question>(this.questions);
 		ArrayList<Integer> questionIds = new ArrayList<Integer>();
-		// TODO implement this
+		int questionsCount = 0;
+		
+		relevantQuestions.removeIf(question -> question.difficulty != difficulty);
+		for (Question question : relevantQuestions)
+	    {
+			questionIds.add(question.id);
+
+			questionsCount++;
+			if (questionsCount == numberOfQuestions) {
+				break;
+			}
+	    }
 		return questionIds;
+	}
+	
+	public Optional<Question> getQuestionById(int questionId) {
+		return this.questions.stream().filter(question -> question.id == questionId).findFirst();
 	}
 	
 	public ArrayList<Question> getShuffledQuestions(Difficulty difficulty, int length) {
@@ -136,21 +172,27 @@ public class DatabaseManager {
 		
 		return new ArrayList<Question>(filteredQuestions.subList(0, length - 1));
 	}
-
-	public void saveQuestion() {
-
-	}
 	
 	public int produceQuizId() {
-		// TODO implement to get the max quiz id + 1
-		return 1;
+		Random rand = new Random(); 
+		return rand.nextInt(10000);
 	}
 
-	public void getQuiz() {
-		// TODO
-	}
+	public void saveQuiz(int quizId, Difficulty difficulty, int numberOfQuestions,
+			int grade, int complitionSeconds, ArrayList<Integer> questionIds) {
+		JSONObject jsonQuiz = new JSONObject();
+		jsonQuiz.put("difficulty", difficulty.name());
+		jsonQuiz.put("grade", grade);
+		this.quizResults.add(jsonQuiz);
+		String decodedQuizReuslts = this.quizResults.toString();
 
-	public void saveQuiz() {
-		// TODO
+		try {
+			FileWriter quizFile = new FileWriter(this.path + "\\quiz.json");
+			quizFile.write(decodedQuizReuslts);
+			quizFile.close();
+		} catch (IOException e) {
+			System.out.println("Exception saving quiz result...");
+			return;
+		}
 	}
 }

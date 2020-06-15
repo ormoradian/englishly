@@ -3,6 +3,8 @@ package englishly;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import englishly.Question.Difficulty;
+
 public final class CLIManager {
 
 	private CLIManager(){
@@ -12,14 +14,17 @@ public final class CLIManager {
 	public static int getQuizLevel()
 	{
 		Scanner input = new Scanner(System.in);
-		int selection;
+		
+		Difficulty.allOf(seasons.class)
+        .forEach(season -> System.out.println(season));
+		
 		System.out.println("Please choose the level of the quiz");
         System.out.println("-------------------------\n");
         System.out.println("1 - Beginners");
         System.out.println("2 - Intermediate");
         System.out.println("3 - Advanced");
         System.out.println("4 - Quit");
-        selection = input.nextInt();
+        int selection = input.nextInt();
         return selection;   
 	}
 	

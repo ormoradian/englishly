@@ -1,5 +1,7 @@
 package englishly;
 
+import java.util.Scanner;
+
 class CompletionQuestion extends Question {
 	private String rightAnswer;
 	
@@ -19,7 +21,9 @@ class CompletionQuestion extends Question {
 		System.out.println(this.content);
 	}
 	
-	public boolean isRightAnswer(String answer) {
+	public boolean isRightAnswer() {
+		Scanner scanner = new Scanner(System.in);
+		String answer = scanner.next();
 		return answer == this.rightAnswer;
 	}
 }
