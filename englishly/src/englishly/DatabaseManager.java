@@ -33,8 +33,7 @@ public class DatabaseManager {
     } 
 
 	public DatabaseManager() {
-		// Don't call me directly!! Call getInstance method instead
-		this.path = System.getenv("ENGLISHLY_DB_PATH");
+		this.path = ".\\src\\resources\\db";
 		this.questions = new ArrayList<Question>();
 
 		this.loadQuestions();
