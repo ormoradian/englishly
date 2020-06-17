@@ -40,6 +40,10 @@ public class Menu {
 		System.out.format("+----+----------------+%n");
 	}
 	
+	public static Difficulty getDifficultyFromInt(int difficulty) {
+		return Difficulty.values()[difficulty];
+	}
+	
 	public Difficulty getDifficulty() {
 		System.out.println("Please choose the level of the quiz");
 		String leftAlignFormat = "| %-3d| %-14s |%n";
@@ -53,8 +57,7 @@ public class Menu {
 		}
 		System.out.format("+----+----------------+%n");
         int selection = this.scanner.nextInt();
-        return Difficulty.values()[selection];   
-	
+        return Menu.getDifficultyFromInt(selection);
 	}
 	
 	public int getAction() {

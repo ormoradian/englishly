@@ -7,20 +7,21 @@ import org.json.simple.JSONObject;
 
 public class Report {
 	private boolean isimproved;
-	private JSONArray quizResults;
+	public JSONArray quizResults;
 	
 	public Report() {
 		DatabaseManager databaseManager = DatabaseManager.getInstance();
 		this.quizResults = databaseManager.getQuizResults(); 
 	}
 	
-	private boolean getIsImproved() {
+	public boolean getIsImproved() {
 		boolean isImproved = true;
 		Long previousGrade = new Long(0);
 		
 		for (Object quizResult : this.quizResults) {
 			JSONObject quizResultJSONObject = (JSONObject) quizResult;
 			Long grade = (Long)quizResultJSONObject.get("grade");
+			System.out.println(grade);
 			if (previousGrade > grade ) {
 				isImproved = false;
 				break;

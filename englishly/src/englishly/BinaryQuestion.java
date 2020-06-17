@@ -26,9 +26,13 @@ class BinaryQuestion extends ChoiceQuestion {
 		System.out.println("[2] true");
 	}
 	
+	public boolean checkAnwer(int answer) {
+		return answer - 1 == this.rightAnswer;
+	}
+	
 	public boolean isRightAnswer() {
 		Scanner scanner = new Scanner(System.in);
 		int answer = scanner.nextInt();
-		return answer - 1 == this.rightAnswer;
+		return this.checkAnwer(answer);
 	}
 }

@@ -22,9 +22,13 @@ class CompletionQuestion extends Question {
 		System.out.println();
 	}
 	
+	public boolean checkAnwer(String answer) {
+		return answer == this.rightAnswer;
+	}
+	
 	public boolean isRightAnswer() {
 		Scanner scanner = new Scanner(System.in);
 		String answer = scanner.next();
-		return answer == this.rightAnswer;
+		return this.checkAnwer(answer);
 	}
 }
