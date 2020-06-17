@@ -18,7 +18,8 @@ class CompletionQuestion extends Question {
 	}
 	
 	public void printQuestion() {
-		System.out.println(this.content);
+		System.out.format("[Question %d] %s", this.id, this.content);
+		System.out.println();
 	}
 	
 	public boolean isRightAnswer() {

@@ -8,24 +8,25 @@ import javax.activation.*;
 
 
 public class EmailSender {
-	public EmailSender(String to,String mailSubject,String mailBody)
+	public EmailSender(String to, String mailSubject, String mailBody)
 	{
 		
-		this.host="localhost";
+		this.host = "localhost";
         this.subject = mailSubject;
         this.body = mailBody;
+        this.to = new String[]{ to };
 		// Get system properties
 	}
-	private String from = "lironbenezra2";  // GMail user name (just the part before "@gmail.com")
-    private  String pass = "315783852"; // GMail password
+
+	private String from = "englishlyhit1";
+    private String pass = "ab123456$";
     public String subject;
     public String body;
     private String host;
-    private  String RECIPIENT = "benezraliron1@gmail.com";
-	private  String[] to={ RECIPIENT };
+	private String[] to;
 	Session session;
 
-    public  void sendMail( ) {
+    public void sendMail( ) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");
@@ -57,6 +58,7 @@ public class EmailSender {
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
+            System.out.println("Mail sent successfully");
         }
         catch (AddressException ae) {
             ae.printStackTrace();

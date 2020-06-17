@@ -15,13 +15,29 @@ public class Main {
 		int action = menu.getAction();
 		System.out.println("The selected action: " + Integer.toString(action));
 		
-		while (action != 2) {
+		while (action != menu.getExitOptionNumber()) {
 			if (action == 1) {
 				// start a quiz
 				Difficulty difficulty = menu.getDifficulty();
 				Quiz quiz = new Quiz(Difficulty.MEDIUM, 3);
 				quiz.startQuiz();
 				quiz.finalizeQuiz();
+			}
+			
+			if (action == 2) {
+				Report report = new Report();
+				report.sendReport();
+			}
+			
+			if (action == 3) {
+				System.out.println("Provide question id:");
+				int questionId = scanner.nextInt();
+				System.out.println("Provide issue content:");
+				String issueContent = scanner.next();
+				System.out.println("Provide suggested right answer:");
+				String rightAnswer = scanner.next();
+				Issue issue = new Issue(questionId, issueContent, rightAnswer);
+				issue.sendIssueMail();
 			}
 			
 			menu.showMenu();

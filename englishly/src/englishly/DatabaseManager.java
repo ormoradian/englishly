@@ -41,6 +41,10 @@ public class DatabaseManager {
 		this.loadQuizs();
 	}
 	
+    public JSONArray getQuizResults() {
+    	return this.quizResults;
+    }
+	
 	private Question parseQuestionByType(JSONObject questionJSONObject) throws UnknowQuestionTypeException{
 		Question question;
 		

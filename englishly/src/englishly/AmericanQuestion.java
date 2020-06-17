@@ -19,7 +19,8 @@ class AmericanQuestion extends ChoiceQuestion {
 	}
 	
 	public void printQuestion() {
-		System.out.println(this.content);
+		System.out.format("[Question %d] %s", this.id, this.content);
+		System.out.println();
 		int i = 1;
 		for (String answer: this.answers) {
 			System.out.println("[" + i + "] " + answer);

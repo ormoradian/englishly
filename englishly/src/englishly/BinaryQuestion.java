@@ -20,7 +20,8 @@ class BinaryQuestion extends ChoiceQuestion {
 	}
 	
 	public void printQuestion() {
-		System.out.println(this.content);
+		System.out.format("[Question %d] %s", this.id, this.content);
+		System.out.println();
 		System.out.println("[1] false");
 		System.out.println("[2] true");
 	}

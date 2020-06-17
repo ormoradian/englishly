@@ -15,14 +15,20 @@ public class Menu {
 	public Menu() {
 		this.options = new HashMap<Integer, String>() {{
 		    put(1, "Start a quiz");
-	        put(2, "Exit");
+		    put(2, "Create report");
+		    put(3, "Create issue");
+	        put(4, "Exit");
 		}};
 		this.scanner =  new Scanner(System.in);
 	}
 	
+	public int getExitOptionNumber() {
+		return 4;
+	}
+	
 	public void showMenu() {
 		String leftAlignFormat = "| %-3d| %-14s |%n";
-		
+
 		System.out.format("+----+----------------+%n");
 		System.out.format("| ID |     Option     |%n");
 		System.out.format("+----+----------------+%n");
@@ -58,7 +64,7 @@ public class Menu {
 		System.out.println("Select an option from the menu: ");
 		
 		while (numericOption <= 0) {
-			String selectedOption = this.scanner.nextLine();
+			String selectedOption = this.scanner.next();
 			try { 
 				numericOption = Integer.parseInt(selectedOption);
 			} catch(NumberFormatException e){  

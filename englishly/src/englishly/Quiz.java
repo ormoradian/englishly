@@ -35,7 +35,7 @@ public class Quiz {
 		return this.difficulty;
 	}
 
-	public void finalizeQuiz() {
+	public void finalizeQuiz() throws QuestionNotFoundException {
 		this.endTime = Instant.now().getEpochSecond();
 		this.complitionSeconds = (int)(this.endTime - this.startTime);
 		// calculate quiz result and save to DB
@@ -52,10 +52,40 @@ public class Quiz {
 				this.complitionSeconds, 
 				this.questionIds		
 		);
+		
+		System.out.println("Do you want to produce an email? [yes\\no]");
+		String answer = this.scanner.nextLine();
+		answer = answer.toLowerCase();
+		if (answer.equals("yes") || answer.equals("ye") || answer.equals("y")) {
+			System.out.println("Sending the quiz result with mail");
+			this.sendQuizAsEmailContent();
+		}
 	}
 	
-	public void produceEmailContent() {
-		// produce the email content to send to the email sender
+	public void sendQuizAsEmailContent() throws QuestionNotFoundException {
+		String mailContent = String.format(
+				"Grade: %d\tDifficulty: %s\nQuestions:\n",
+				this.grade,
+				this.difficulty
+		);
+		
+		int questionCounter = 1;
+		
+		for (int questionId : this.questionIds) {
+			Question question = this.databaseManager.getQuestionByID(questionId);
+			mailContent += String.format("[Question %d] %s (Diffuculty: %s)\n", 
+					questionCounter,
+					question.content,
+					question.difficulty);
+			questionCounter++;
+		}
+		
+		System.out.println("Provide target mail:");
+		Scanner scanner = new Scanner(System.in);
+		String mailAddress = scanner.next();
+		
+		EmailSender emailSender = new EmailSender(mailAddress, "Englishly report", mailContent);
+		emailSender.sendMail();
 	}
 	
 	public void startQuiz() throws QuestionNotFoundException {
