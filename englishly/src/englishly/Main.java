@@ -19,7 +19,8 @@ public class Main {
 			if (action == 1) {
 				// start a quiz
 				Difficulty difficulty = menu.getDifficulty();
-				Quiz quiz = new Quiz(Difficulty.MEDIUM, 3);
+				int length = menu.getQuizLength();
+				Quiz quiz = new Quiz(Difficulty.MEDIUM, length);
 				quiz.startQuiz();
 				quiz.finalizeQuiz();
 			}

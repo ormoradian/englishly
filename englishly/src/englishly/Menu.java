@@ -60,6 +60,11 @@ public class Menu {
         return Menu.getDifficultyFromInt(selection);
 	}
 	
+	public int getQuizLength() {
+		System.out.println("Enter quiz length: ");
+		return this.scanner.nextInt();
+	}
+	
 	public int getAction() {
 		int numericOption = -1;
 		boolean isError = false;
